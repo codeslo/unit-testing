@@ -17,3 +17,11 @@ function needSpecificInput(num){
     }
 }
 
+
+it('returns undefined',function(){
+    expect(myFunc(parm)).toBeUndefined();
+});
+
+it('should be null',function(){
+    expect(myFunc().toBeNull());
+})

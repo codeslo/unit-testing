@@ -15,6 +15,7 @@ function greeter(name) {
         if (typeof name === 'string') {
             return greetingArray[Math.floor(Math.random() * greetingArray.length)] + ", " + name;
         }
+        
     }
 
     return null;
