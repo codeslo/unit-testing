@@ -52,8 +52,6 @@ describe('shoppingCart testing', function () {
         it('buildCart gets correct total',function(){
             expect(buildCart()).toBeCloseTo(69.04);
         });
-        // it('calls dependencies',function(){
-        //     spyOn(window,'getItemList');
-        // });
+        
     });
 });
