@@ -1,37 +1,66 @@
 describe('shoppingCart testing', function () {
-    xdescribe('getItemList tests', function () {
+    describe('getItemList tests', function () {
         it('returns an array', function () {
-
+            let items = getItemList();
+            expect(Array.isArray(items)).toBe(true);
         });
         it('returns an array containing prices and quantities', function () {
-            // much check that all the shoppingCart items have price and quantity properties
+            let items = getItemList()[0];
+            // example of running tests inside a loop
+            for (let key in items) {
+                expect(items[key].hasOwnProperty('price')).toBe(true);
+                expect(items[key].hasOwnProperty('quantity')).toBe(true);
+            }
         });
     });
 
-    xdescribe('getSubTotal testing', function () {
+    describe('getSubTotal testing', function () {
         it('returns the sum of the object', function () {
-            // we'll need to create a custom object with simple values to test this.
+            let testObj = [{
+                item1: {
+                    price: 1,
+                    quantity: 1
+                },
+                item2: {
+                    price: 1,
+                    quantity: 1
+                },
+                item3: {
+                    price: 1,
+                    quantity: 1
+                }
+            }];
+            expect(getSubTotal(testObj)).toBe(3);
         });
     });
-    xdescribe('getShippingCosts tests', function () {
+    describe('getShippingCosts tests', function () {
         it('returns 5 + 10% of subTotal', function () {
-            // a little math here
+            let testSubTotal = 10;
+            expect(getShippingCosts(testSubTotal)).toBe(6);
         });
 
     });
 
     // toBeCloseTo is a matcher for exact values like 2.75 or 6.00
-    xdescribe('calculateTotal tests', function () {
+    describe('calculateTotal tests', function () {
         it('returns the total of the parameters passed to it', function () {
-            // how should we do this? 
+            expect(calculateTotal([1, 2, 3])).toBeCloseTo(6.00);
         });
     });
 
-    xdescribe('buildCart tests', function () {
+    describe('buildCart tests', function () {
         it('buildCart gets correct total', function () {
-            // this one will be tricky as it has dependencies. More on this in class05
+            expect(buildCart()).toBeCloseTo(69.04);
+        });
 
-            // for now, we'll cheat a little so we can learn a new matcher: toBeCloseTo()
+    });
+
+    describe('buildCart dependency tests', function () {
+        it('calls all dependencies', function () {
+            spyOn(window, 'getItemList')()
+            spyOn(window, 'getSalesTax');
+            spyOn(window, 'getShippingCosts');
+            spyOn(window, 'calculateTotal');
         });
     });
 

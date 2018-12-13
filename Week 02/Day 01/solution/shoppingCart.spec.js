@@ -54,4 +54,11 @@ describe('shoppingCart testing', function () {
         });
         
     });
+
+    describe('buildCart dependency tests',function(){
+        spyOn(window,'getItemList');
+        spyOn(window,'getSalesTax');
+        spyOn(window,'getShippingCosts');
+        spyOn(window,'calculateTotal');
+    });
 });
